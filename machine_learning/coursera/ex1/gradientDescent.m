@@ -17,10 +17,12 @@ for iter = 1:num_iters
     %       of the cost function (computeCost) and gradient here.
     %
 
-
-
-
-
+    prediction = X*theta;
+    errors = (prediction - y);
+    % should calculate different theta via different column.
+    theta1 = theta(1,:) - (alpha/m)*sum(errors .* X(:, 1));
+    theta2 = theta(2,:) - (alpha/m)*sum(errors .* X(:, 2));
+    theta = [theta1; theta2];
 
 
     % ============================================================
