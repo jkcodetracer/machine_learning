@@ -16,14 +16,12 @@ for iter = 1:num_iters
     % Hint: While debugging, it can be useful to print out the values
     %       of the cost function (computeCostMulti) and gradient here.
     %
+    prediction = X*theta;
+    errors = prediction - y;
 
-
-
-
-
-
-
-
+    for iter_n = 1:(size(X, 2))
+        theta(iter_n) = theta(iter_n, :) - (alpha/m)*sum(errors .* X(:, iter_n));
+    end
 
 
 
