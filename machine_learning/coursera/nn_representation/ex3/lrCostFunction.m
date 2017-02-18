@@ -12,6 +12,7 @@ m = length(y); % number of training examples
 J = 0;
 grad = zeros(size(theta));
 
+
 % ====================== YOUR CODE HERE ======================
 % Instructions: Compute the cost of a particular choice of theta.
 %               You should set J to the cost.
@@ -36,7 +37,13 @@ grad = zeros(size(theta));
 %           grad = grad + YOUR_CODE_HERE (using the temp variable)
 %
 
-
+%printf("\====x: %d %d theta:%d %d\n", size(X), size(theta));
+%printf("\====lambda: %d %d theta:%d %d\n", size(lambda), size(theta));
+h = sigmoid(X*theta); % one [n,1] matrix
+theta_tmp = [0;theta(2:size(theta),:)]; % first round, theta1 should be 0
+p = lambda*(theta_tmp'*theta_tmp)/(2*m);
+J = (1/m)*(-y'*log(h) - (1-y)'*log(1-h)) + p;
+grad = (X'*(h-y) + lambda*theta_tmp)/m;
 
 
 
@@ -46,7 +53,5 @@ grad = zeros(size(theta));
 
 
 % =============================================================
-
-grad = grad(:);
 
 end
