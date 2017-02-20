@@ -79,9 +79,12 @@ z3 = a2*Theta2';
 a3 = sigmoid(z3);
 h = a3;
 
-% J be care of dimantion
-J = sum(sum((-Y).*log(h) - (1-Y).*log(1-h), 2))/m
+% regularization argument
+% bias all zero index!!
+ra = sum(sum(Theta1(:, 2:end).^2, 2))+sum(sum(Theta2(:,2:end).^2, 2));
 
+% J be care of dimantion
+J = sum(sum((-Y).*log(h) - (1-Y).*log(1-h), 2))/m + lambda*ra/(2*m);
 
 
 
